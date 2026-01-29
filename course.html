@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Arena Animation - Leading Institute for Animation, VFX, Gaming, Web & Graphics Designing. Transform your creative passion into a successful career.">
+    <title>Arena Animation | Enter The Creative Universe</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Visual Effects Overlays -->
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="particle-blur-overlay-2"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <div class="logo-container">
+                    <span class="logo-text">ARENA</span>
+                    <span class="logo-accent">ANIMATION</span>
+                </div>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#careers">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="nav-link btn-nav-cta" href="#enroll">
+                            <span>Start Now</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <section class="cyber-page-header">
+        <div class="header-aurora-bg"></div>
+        <div class="header-grid-overlay"></div>
+
+        <div class="container position-relative z-2">
+            <div class="cyber-breadcrumb mb-5">
+                <a href="index.html" class="cb-link">HOME</a>
+                <span class="cb-separator"><i class="fas fa-chevron-right"></i></span>
+                <!-- <a href="#" class="cb-link">NETWORK</a> -->
+                <span class="cb-separator"><i class="fas fa-chevron-right"></i></span>
+                <span class="cb-current">COURSES</span>
+                <span class="cb-cursor">_</span>
+            </div>
+
+
+            <h1 class="header-title">
+                <span class="highlight-glitch" data-text="Courses">Courses</span>
+            </h1>
+
+            <p class="header-subtitle">
+                Unlock your potential with our industry-leading programs designed for the <span
+                    class="text-cyan">creative multiverse</span>.
+            </p>
+
+        </div>
+    </section>
+
+    <header class="page-header container z-ind">
+        <h1 class="header-title">FULL <span style="color: var(--neon-cyan);">COURSE LIST</span></h1>
+        <p class="header-subtitle">Select your path to mastery</p>
+    </header>
+
+    <section>
+        
+        <div class="container">
+            <div class="filter-wrapper">
+                <div class="cyber-filter z-ind">
+                    <button class="filter-btn active" data-filter="all">All Modules</button>
+                    <button class="filter-btn" data-filter="anim">Animation</button>
+                    <button class="filter-btn" data-filter="vfx">VFX</button>
+                    <button class="filter-btn" data-filter="game">Gaming / AR-VR</button>
+                    <button class="filter-btn" data-filter="web">Web & UI/UX</button>
+                    <button class="filter-btn" data-filter="broadcast">Broadcast</button>
+                </div>
+            </div>
+    
+            <div class="course-grid" id="courseGrid">
+    
+                <div class="course-item cat-anim" data-category="anim">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Animation</span>
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Animation Prime</h3>
+                            <p class="card-desc">Complete training in 3D animation pipeline from pre-production to final
+                                render.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 24 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Maya, Blender</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-vfx" data-category="vfx">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">VFX</span>
+                            <img src="https://images.unsplash.com/photo-1535905557558-afc4877a26fc?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">VFX Composer</h3>
+                            <p class="card-desc">Master compositing, rotoscopy, and match-moving for high-end film
+                                production.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 18 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Nuke, Silhouette</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-game" data-category="game">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Gaming</span>
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Game Art Program</h3>
+                            <p class="card-desc">Create stunning game environments, assets, and characters for next-gen
+                                consoles.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 15 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Unreal 5, ZBrush</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-web" data-category="web">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge" style="color: #fff; border-color: #fff;">Graphics</span>
+                            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">GWDD</h3>
+                            <p class="card-desc">Graphics, Web Design & Development. Build responsive websites and brand
+                                identities.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 15 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Adobe CC, JS</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-vfx" data-category="vfx">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">VFX Film</span>
+                            <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">VFX Prime</h3>
+                            <p class="card-desc">An intensive course covering the complete VFX pipeline from pre to
+                                post-production.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 28 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Houdini, Mocha</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-game" data-category="game">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">AR / VR</span>
+                            <img src="https://images.unsplash.com/photo-1626379953822-baec19c3accd?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Immersive Design</h3>
+                            <p class="card-desc">Specialized training in Augmented and Virtual Reality experiences using
+                                Unity.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 10 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Unity, ARCore</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-web" data-category="web">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">UI / UX</span>
+                            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">UI/UX Design</h3>
+                            <p class="card-desc">Design intuitive user interfaces and experiences for web and mobile apps.
+                            </p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 11 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Figma, XD</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-broadcast" data-category="broadcast">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Broadcast</span>
+                            <img src="https://images.unsplash.com/photo-1585233216392-71052449a882?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Broadcast Prime</h3>
+                            <p class="card-desc">Learn motion graphics, channel packaging, and video editing for TV/OTT.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 18 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> After Effects, C4D</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-anim" data-category="anim">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Film Making</span>
+                            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">AFD</h3>
+                            <p class="card-desc">Animation Film Design. Focus on pre-production, storytelling, and
+                                direction.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 24 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Storyboard Pro</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-web" data-category="web">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Marketing</span>
+                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Digital Marketing</h3>
+                            <p class="card-desc">SEO, SMM, and Content Strategy for the modern digital landscape.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 10 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Google Analytics</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-vfx" data-category="vfx">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Short Term</span>
+                            <img src="https://images.unsplash.com/photo-1626544827763-d516dce335ca?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Rotoscopy</h3>
+                            <p class="card-desc">Specialized short-term course for mastering Silhouette and Nuke roto.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 6 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Silhouette</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="course-item cat-game" data-category="game">
+                    <div class="course-card">
+                        <div class="card-visual">
+                            <span class="card-badge">Specialization</span>
+                            <img src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=1000&auto=format&fit=crop"
+                                class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Unreal Specialist</h3>
+                            <p class="card-desc">Advanced real-time rendering and virtual production using UE5.</p>
+                            <div class="card-specs">
+                                <span class="spec-item"><i class="far fa-clock"></i> 8 Months</span>
+                                <span class="spec-item"><i class="fas fa-tools"></i> Unreal Engine 5</span>
+                            </div>
+                            <a href="#" class="card-btn">Details</a>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+
+
+        <hr class="footer-divider">
+
+        <div class="container py-5">
+            <div class="row gy-5">
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer-brand">
+                        <img src="assets/logo.png" alt="Arena" class="footer-logo"
+                            onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<h3 class=\'text-white fw-bold\'>ARENA</h3>')">
+                        <p class="mt-4 text-white-50" style="max-width: 300px;">
+                            Asia's leader in Animation, VFX, and Gaming education. Turning creative passion into
+                            professional careers since 1996.
+                        </p>
+                        <div class="social-links mt-4">
+                            <a href="#" class="social-btn"><i class="ri-instagram-line"></i></a>
+                            <a href="#" class="social-btn"><i class="ri-linkedin-fill"></i></a>
+                            <a href="#" class="social-btn"><i class="ri-youtube-fill"></i></a>
+                            <a href="#" class="social-btn"><i class="ri-behance-fill"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="footer-heading">Courses</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Animation Prime</a></li>
+                        <li><a href="#">VFX Composer</a></li>
+                        <li><a href="#">Game Design</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Motion Graphics</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h5 class="footer-heading">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Placements</a></li>
+                        <li><a href="#">Student Showcase</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-heading">Stay Updated</h5>
+                    <div class="newsletter-box mt-3">
+                        <input type="email" placeholder="Enter your email">
+                        <button><i class="ri-arrow-right-line"></i></button>
+                    </div>
+                    <div class="contact-info mt-4">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <i class="ri-map-pin-line text-accent"></i>
+                            <span class="text-white-50">Mumbai, India</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="ri-phone-line text-accent"></i>
+                            <span class="text-white-50">+91 1800-209-1444</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-ticker">
+            <div class="ticker-track">
+                <span>ANIMATION • VFX • GAMING • WEB DESIGN • GRAPHICS • AR/VR • METAVERSE • </span>
+                <span>ANIMATION • VFX • GAMING • WEB DESIGN • GRAPHICS • AR/VR • METAVERSE • </span>
+            </div>
+        </div>
+
+        <div class="footer-bottom text-center py-3">
+            <p class="mb-0 text-white-50 small">&copy; 2026 Arena Animation. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
