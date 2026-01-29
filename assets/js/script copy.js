@@ -1,28 +1,3 @@
-const PERF = {
-    isPageVisible: true,
-    lastScrollY: 0,
-    animationPaused: false,
-    throttleDelay: 16, // ~60fps
-    mouseThrottleDelay: 32, // ~30fps for mouse
-};
-
-// Throttle utility for expensive operations
-function throttle(fn, delay) {
-    let lastCall = 0;
-    return function (...args) {
-        const now = performance.now();
-        if (now - lastCall >= delay) {
-            lastCall = now;
-            return fn.apply(this, args);
-        }
-    };
-}
-
-// Track page visibility to pause animations when hidden
-document.addEventListener('visibilitychange', () => {
-    PERF.isPageVisible = !document.hidden;
-});
-
 document.addEventListener('DOMContentLoaded', () => {
     initExperience();
     initCarousel();
@@ -110,17 +85,15 @@ function initScrollProgress() {
     `;
     document.head.appendChild(style);
 
-    // Update on scroll - throttled for performance
+    // Update on scroll
     const bar = progressBar.querySelector('.scroll-progress-bar');
 
-    const updateProgress = throttle(() => {
+    window.addEventListener('scroll', () => {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = (scrollTop / docHeight) * 100;
         bar.style.width = `${progress}%`;
-    }, PERF.throttleDelay);
-
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    });
 }
 
 // --- THREE.JS PARTICLE SYSTEM ---
@@ -129,10 +102,6 @@ function initThreeJS() {
 
     // Prevent crash if canvas or THREE is missing
     if (!canvas || typeof THREE === 'undefined') return;
-
-    // Mobile detection for responsive particle positioning
-    const isMobile = window.innerWidth <= 768;
-    const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
 
     // Make canvas fixed and cover entire viewport
     canvas.style.position = 'fixed';
@@ -146,29 +115,27 @@ function initThreeJS() {
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x050505, 0.008);
 
-    // Responsive camera - zoom out more on mobile for better visibility
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.z = isMobile ? 28 : (isTablet ? 22 : 18);
+    camera.position.z = 18;
 
     const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
-        antialias: false, // Disabled for performance - particles don't need AA
-        alpha: true,
-        powerPreference: 'high-performance'
+        antialias: true,
+        alpha: true
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Capped at 1.5 for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
     // ============================================
-    // SHAPE GENERATORS (responsive positioning)
+    // SHAPE GENERATORS
     // ============================================
 
-    // Shape 1: Film Strip Icon (RIGHT side on desktop, CENTERED on mobile)
+    // Shape 1: Film Strip Icon (RIGHT side of screen) + Scattered particles
     function generateFilmStripWithScatter(count) {
         const points = [];
-        const scale = isMobile ? 2.5 : 3.3;
-        const offsetX = isMobile ? 0 : (isTablet ? 6 : 10); // Center on mobile
+        const scale = 3.3;
+        const offsetX = 10; // Right side
         const tiltAngle = -10 * (Math.PI / 180); // 10 degree tilt
 
         // Helper function to add point with tilt rotation
@@ -365,11 +332,11 @@ function initThreeJS() {
         return points;
     }
 
-    // Shape 3: Game Controller (LEFT side on desktop, CENTERED on mobile)
+    // Shape 3: Game Controller (LEFT side of screen)
     function generateControllerPoints(count) {
         const points = [];
-        const scale = isMobile ? 2.8 : 3.5;
-        const offsetX = isMobile ? 0 : (isTablet ? -7 : -11); // Center on mobile
+        const scale = 3.5;
+        const offsetX = -11; // LEFT side
         const tiltAngle = 10 * (Math.PI / 180); // Opposite tilt (10 degrees)
 
         // Helper to add point with tilt
@@ -482,11 +449,11 @@ function initThreeJS() {
         return points.slice(0, count);
     }
 
-    // Shape 4: Computer Monitor Icon (responsive positioning)
+    // Shape 4: Computer Monitor Icon (precise and clean)
     function generateLightbulbPoints(count) {
         const points = [];
-        const scale = isMobile ? 4.0 : 5.8;
-        const offsetX = isMobile ? 0 : (isTablet ? 5 : 8); // Center on mobile
+        const scale = 5.8;
+        const offsetX = 8;
         const offsetY = -1;
         const tiltAngle = -10 * (Math.PI / 180);
 
@@ -706,13 +673,13 @@ function initThreeJS() {
     }
 
 
-    // Shape 5: Rocket (responsive positioning)
+    // Shape 5: Rocket (for CTA section)
     function generateRocketPoints(count) {
         const points = [];
-        const scale = isMobile ? 1.0 : 1.3;
-        const offsetX = isMobile ? 0 : (isTablet ? -4 : -6); // Center on mobile
+        const scale = 1.3; // Larger scale for visibility
+        const offsetX = -6; // Position on LEFT side of screen
         const offsetY = 0;
-        const tiltAngle = -35 * (Math.PI / 180); // 35 degree tilt
+        const tiltAngle = -35 * (Math.PI / 180); // 15 degree tilt
 
         // apply tilt rotation
         function applyTilt(x, y) {
@@ -929,9 +896,9 @@ function initThreeJS() {
     }
 
     // ============================================
-    // CREATE INSTANCED MESH (responsive particle count)
+    // CREATE INSTANCED MESH
     // ============================================
-    const particleCount = isMobile ? 2500 : (isTablet ? 2000 : 2750); // Fewer on mobile for performance
+    const particleCount = 2750;
     const geometry = new THREE.TetrahedronGeometry(0.2, 0); //particle size
     const material = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -1008,37 +975,27 @@ function initThreeJS() {
     let morphProgress = 0;
 
     // ============================================
-    // MOUSE INTERACTION (throttled for performance)
+    // MOUSE INTERACTION
     // ============================================
     let mouse = { x: 0, y: 0 };
     let mouseWorld = new THREE.Vector3();
     const raycaster = new THREE.Raycaster();
     const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 
-    const handleMouseMove = throttle((e) => {
+    document.addEventListener('mousemove', (e) => {
         mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
         mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
         raycaster.setFromCamera(mouse, camera);
         raycaster.ray.intersectPlane(plane, mouseWorld);
-    }, PERF.mouseThrottleDelay);
-
-    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    });
 
     // ============================================
-    // ANIMATION LOOP (optimized with visibility detection)
+    // ANIMATION LOOP
     // ============================================
     const clock = new THREE.Clock();
-    let frameCount = 0;
 
     function animate() {
         requestAnimationFrame(animate);
-
-        // Skip rendering when page is not visible (major performance win)
-        if (!PERF.isPageVisible) {
-            clock.getElapsedTime(); // Keep clock running to avoid jump
-            return;
-        }
-
         const time = clock.getElapsedTime();
 
         for (let i = 0; i < particleCount; i++) {
@@ -1177,15 +1134,11 @@ function initThreeJS() {
     }
     animate();
 
-    // Resize (debounced for performance)
-    let resizeTimeout;
+    // Resize
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }, 100);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
     // ============================================
@@ -1679,13 +1632,10 @@ function initCursor() {
     const cursorDot = document.querySelector('.cursor-dot');
     if (!cursor || !cursorDot) return;
 
-    // Throttled cursor movement for performance
-    const moveCursor = throttle((e) => {
+    document.addEventListener('mousemove', (e) => {
         gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.25, ease: 'power2.out' });
         gsap.to(cursorDot, { x: e.clientX, y: e.clientY, duration: 0.08 });
-    }, PERF.mouseThrottleDelay);
-
-    document.addEventListener('mousemove', moveCursor, { passive: true });
+    });
 
     document.querySelectorAll('a, button, .card-3d, .program-card, .stat-box, .feature-item, .course-card').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
@@ -1715,7 +1665,7 @@ function initCarousel() {
 }
 
 
-// 1. Mouse Glow Effect Logic (throttled)
+// 1. Mouse Glow Effect Logic
 function initFeatureGlow() {
     const cards = document.querySelectorAll('.feature-card');
 
@@ -1723,8 +1673,7 @@ function initFeatureGlow() {
         const glow = card.querySelector('.card-glow-effect');
         if (!glow) return;
 
-        // Throttled glow movement for performance
-        const moveGlow = throttle((e) => {
+        card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -1733,9 +1682,7 @@ function initFeatureGlow() {
             // We subtract 200 because the glow is 400x400px, so 200 is radius
             glow.style.transform = `translate(${x - 200}px, ${y - 200}px)`;
             glow.style.opacity = '1';
-        }, PERF.mouseThrottleDelay);
-
-        card.addEventListener('mousemove', moveGlow, { passive: true });
+        });
 
         card.addEventListener('mouseleave', () => {
             glow.style.opacity = '0';
