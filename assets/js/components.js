@@ -1,7 +1,10 @@
-/**
- * Simple Component Loader
- * Loads header and footer HTML components into the page
- */
+// === SOURCE PROTECTION - Disable right-click and key shortcuts ===
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.onkeydown = e =>
+    e.key === 'F12' ||
+        (e.ctrlKey && ['u', 's', 'i', 'j'].includes(e.key.toLowerCase()))
+        ? false : true;
+
 
 (function () {
     'use strict';
