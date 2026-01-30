@@ -802,10 +802,9 @@ body {
 .hero-description {
     font-size: 1.25rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 2.5rem;
     max-width: 600px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .hero-description .highlight {
@@ -815,6 +814,12 @@ body {
 
 .hero-description strong {
     color: #fff;
+}
+
+@media (max-width: 768px) {
+    .hero-description {
+        backdrop-filter: blur(3px);
+    }
 }
 
 /* Hero Buttons */
@@ -902,6 +907,7 @@ body {
     clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
     transition: all 0.3s ease;
     min-width: 120px;
+    backdrop-filter: blur(3px);
 }
 
 .stat-box::before {
@@ -1153,6 +1159,15 @@ body {
     letter-spacing: 2px;
 }
 
+@media (max-width: 768px) {
+    .scroll-indicator,
+    .scroll-box,
+    .scroll-wheel,
+    .scroll-text {
+        display: none;
+    }
+}
+
 /* ============================================
    Content Section
    ============================================ */
@@ -1323,7 +1338,7 @@ body {
 
     .stat-box {
         width: 100%;
-        max-width: 200px;
+        /* max-width: 200px; */
     }
 
     /* Hide custom cursor on touch devices */
@@ -1943,9 +1958,12 @@ body {
 .institute-description {
     font-size: 1.15rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.75);
+    /* color: rgba(255, 255, 255, 0.75); */
     margin-bottom: 2.5rem;
     max-width: 550px;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .institute-features {
@@ -1964,6 +1982,7 @@ body {
     border: 1px solid rgba(223, 49, 49, 0.2);
     border-left: 3px solid var(--arena-red);
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .feature-item:hover {
@@ -2152,6 +2171,29 @@ body {
 
     100% {
         background-position: 200% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-begin,
+    .text-top {
+        font-size: 10vw;
+    }
+
+    .text-middle {
+        font-size: 11vw;
+    }
+
+    .text-bottom {
+        font-size: 20vw;
+    }
+
+    .course-swiper {
+        margin-top: 2rem;
+    }
+
+    .immersive-section {
+        height: unset;
     }
 }
 
@@ -2375,7 +2417,7 @@ body {
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     .hero-section {
@@ -2827,6 +2869,10 @@ body {
 @media (max-width: 991px) {
     .features-grid {
         margin-top: 3rem;
+    }
+
+    .why-section {
+        padding: unset;
     }
 }
 
@@ -3438,6 +3484,11 @@ body {
 
     .showcase-title {
         font-size: 2rem;
+        backdrop-filter: blur(2px);
+    }
+
+    .showcase-section {
+        padding: unset;
     }
 }
 
@@ -3450,6 +3501,12 @@ body {
     padding: 100px 0;
     background-color: #050505;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .testimonial-section {
+        padding: unset;
+    }
 }
 
 /* Cyberpunk Background Pattern */
@@ -3913,9 +3970,9 @@ body {
 
 .portal-desc {
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
     max-width: 600px;
     margin: 0 auto 3.5rem;
+    backdrop-filter: blur(4px);
 }
 
 /* --- BUTTONS --- */
