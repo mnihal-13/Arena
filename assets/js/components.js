@@ -31,15 +31,43 @@
             .then(html => {
                 container.innerHTML = html;
 
-                // Highlight active nav link after header loads
                 if (containerId === 'header-container') {
                     highlightActiveNav();
                     initMobileNavbar();
+                }
+
+                if (containerId === 'footer-container') {
+                    initScrollToTop();
                 }
             })
             .catch(error => {
                 console.error('Error loading component:', error);
             });
+    }
+
+    /**
+     * Initialize Scroll To Top Button
+     */
+    function initScrollToTop() {
+        const scrollBtn = document.getElementById('scrollToTopBtn');
+        if (!scrollBtn) return;
+
+        // Show/Hide on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 
     /**
@@ -97,6 +125,8 @@
             const href = link.getAttribute('href');
 
             // Check if this link matches current page
+            if (link.classList.contains('btn-nav-cta')) return;
+
             if (href === currentPage ||
                 (currentPage === 'index.html' && href === '#home') ||
                 (currentPage === '' && href === '#home')) {
