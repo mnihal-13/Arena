@@ -8,10 +8,22 @@
 (function () {
     'use strict';
 
-    // Component paths - adjust if your folder structure differs
+    // Detect if we're in a subdirectory and get the base path
+    function getBasePath() {
+        const path = window.location.pathname;
+        // Check if we're in the courses folder or any other subdirectory
+        if (path.includes('/courses/') || path.includes('/pages/')) {
+            return '../';
+        }
+        return '';
+    }
+
+    const basePath = getBasePath();
+
+    // Component paths - automatically adjusted for subdirectories
     const components = {
-        header: 'components/header.html',
-        footer: 'components/footer.html'
+        header: basePath + 'components/header.html',
+        footer: basePath + 'components/footer.html'
     };
 
     /**

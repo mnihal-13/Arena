@@ -1193,10 +1193,15 @@ function initThreeJS() {
     // ============================================
     gsap.registerPlugin(ScrollTrigger);
 
-    // If on Gallery page OR Course page, strictly force SCATTER state and skip shape morphing
+    // Scatter particles for pages
     if (document.querySelector('.gallery-section') || document.querySelector('.course-grid')) {
         morphProgress = 1.5;
         material.opacity = 0.2;
+        return;
+    }
+    if (document.querySelector('.course-hero')) {
+        morphProgress = 0.5;
+        material.opacity = 0.3;
         return;
     }
 
