@@ -931,7 +931,7 @@ function initThreeJS() {
     // ============================================
     // CREATE INSTANCED MESH (responsive particle count)
     // ============================================
-    const particleCount = isMobile ? 2500 : (isTablet ? 2000 : 2750); // Fewer on mobile for performance
+    const particleCount = isMobile ? 2500 : (isTablet ? 2500 : 2750); // Fewer on mobile for performance
     const geometry = new THREE.TetrahedronGeometry(0.2, 0); //particle size
     const material = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -1515,6 +1515,18 @@ function initThreeJS() {
 // --- GSAP SCROLL ANIMATIONS ---
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
+
+    // Pinning for Why Us Section (Left Side Sticky)
+    ScrollTrigger.create({
+        trigger: ".why-section",
+        start: "top top",
+        end: "bottom bottom",
+        pin: ".why-sticky-content",
+        pinSpacing: false,
+        getBoundingClientRect() {
+            return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        }
+    });
 
     // Hero reveal
     gsap.timeline({ delay: 0.3 }).to('.hero-section .animate-on-scroll', {

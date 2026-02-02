@@ -226,23 +226,23 @@ body {
     transition: all 0.3s ease;
 }
 
-.nav-link::before {
+/* .nav-link::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--arena-red), transparent);
+    background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
     transition: all 0.3s ease;
     transform: translateX(-50%);
-    box-shadow: 0 0 10px var(--arena-red);
-}
+    box-shadow: 0 0 10px var(--neon-cyan);
+} */
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--arena-red) !important;
-    text-shadow: 0 0 10px var(--arena-red-glow);
+    color: var(--neon-cyan) !important;
+    text-shadow: 0 0 10px var(--neon-cyan-glow);
 }
 
 .nav-link:hover::before,
@@ -2629,7 +2629,7 @@ body {
 .footer-ticker {
     background: #FFD600;
     /* Arena Yellow */
-    padding: 15px 0;
+    padding: 5px 0;
     overflow: hidden;
     margin-top: 50px;
     transform: rotate(-1deg) scale(1.02);
@@ -5067,6 +5067,7 @@ body {
     padding: 20px;
     border-left: 3px solid var(--arena-red);
     transition: all 0.3s ease;
+    backdrop-filter: blur(9px);
 }
 
 .pipeline-step:hover {
@@ -5096,7 +5097,7 @@ body {
 
 .step-content p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     margin: 0;
 }
 
@@ -6474,6 +6475,12 @@ body {
     }
 }
 
-.footer-brand img{
+.footer-brand img {
     height: 85px;
+}
+
+/* Why Us Sticky Content */
+.why-sticky-content {
+    width: 100%;
+    position: relative;
 }
